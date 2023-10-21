@@ -16,7 +16,7 @@ class UsersModel extends Model
     protected $allowedFields    = [
         'name',
         'user_img',
-        'username',
+        'email',
         'password',
         'is_admin',
         'created_at',

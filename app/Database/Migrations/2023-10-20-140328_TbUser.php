@@ -24,9 +24,10 @@ class TbUser extends Migration
                 'constraint' => '255',
                 'null' => true,
             ],
-            'username' => [
+            'email' => [
                 'type' => 'VARCHAR',
-                'constraint' => '15',
+                'constraint' => '50',
+                
             ],
             'password' => [
                 'type' => 'VARCHAR',
@@ -46,6 +47,7 @@ class TbUser extends Migration
             ],
         ]);
         $this->forge->addKey('user_id', true);
+        $this->forge->addUniqueKey('email');
         $this->forge->createTable('tb_users');
     }
 
