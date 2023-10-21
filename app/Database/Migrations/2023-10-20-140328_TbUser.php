@@ -31,7 +31,7 @@ class TbUser extends Migration
             ],
             'password' => [
                 'type' => 'VARCHAR',
-                'constraint' => '32',
+                'constraint' => '255',
             ],
             'is_admin' => [
                 'type' => 'BOOLEAN',

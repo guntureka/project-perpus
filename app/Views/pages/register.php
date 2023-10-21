@@ -10,7 +10,7 @@
         </div>
         <div class="register-container">
             <h1 class="font-bold text-center text-white mb-5 text-5xl">Digital Library</h1>
-            <form id="register-form" class="bg-white p-8 rounded-8">
+            <form action="/register" method="post" enctype="multipart/form-data" id="register-form" class="bg-white p-8 rounded-8">
                 <h2 class="font-bold text-center text-secondary-2 text-4xl mb-5">Register</h2>
                 <div class="flex flex-column gap-3">
                     <div id="message" class="bg-red py-3 px-5 rounded-4">

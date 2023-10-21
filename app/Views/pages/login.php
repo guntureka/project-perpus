@@ -10,7 +10,7 @@
         </div>
         <div class="login-container">
             <h1 class="font-bold text-center text-white mb-5 text-5xl">Digital Library</h1>
-            <form id="login-form" class="bg-white p-8 rounded-8">
+            <form action="/login" method="post id=" login-form" class="bg-white p-8 rounded-8">
                 <h2 class="font-bold text-center text-secondary-2 text-4xl mb-5">LOGIN</h2>
                 <div class="flex flex-column gap-3">
                     <div id="message" class="bg-red py-3 px-5 rounded-4">
@@ -26,7 +26,6 @@
                     </div>
                     <p class="text-base mb-3 font-medium">Belum punya akun? <span class="text-tertiary-1">Daftar sekarang</span></p>
                     <button type="submit" id="login-button" class="bg-tertiary-1 py-3 px-5 rounded-4 text-white text-2xl flex justify-center font-bold">Login</button>
-
                 </div>
             </form>
         </div>
