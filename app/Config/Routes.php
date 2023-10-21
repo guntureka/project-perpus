@@ -6,8 +6,9 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index', ['filter' => 'authGuard']);
-$routes->get('/login', 'Auth::index');
+$routes->get('/login', 'Auth::index', ['filter' => 'isLogin']);
 $routes->post('/login', 'Auth::loginAuth');
 $routes->get('/logout', 'Auth::logout');
-$routes->resource('register');
+$routes->resource('register', ['filter' => 'isLogin']);
+$routes->resource('book', ['filter' => 'authGuard']);
 

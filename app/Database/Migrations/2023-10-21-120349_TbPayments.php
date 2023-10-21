@@ -32,6 +32,10 @@ class TbPayments extends Migration
                 'unsigned' => true,
                 'default' => 0,
             ],
+            'status' => [
+                'type' => 'BOOLEAN',
+                'default' => false,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,

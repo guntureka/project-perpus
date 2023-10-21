@@ -2,9 +2,9 @@
 
 <?= $this->section('content'); ?>
 
-<?php if(session()->getFlashdata('success')): ?>
+<?php if(session()->get('name')): ?>
     
-        <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+        <div class="alert alert-success"><?= session()->get('name') ?></div>
 
 <?php endif; ?>
 

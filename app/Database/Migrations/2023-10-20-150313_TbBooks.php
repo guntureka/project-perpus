@@ -23,10 +23,6 @@ class TbBooks extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'description' => [
-                'type' => 'TEXT',
-                'null' => true,
-            ],
             'synopsis' => [
                 'type' => 'TEXT',
                 'null' => true,
@@ -54,6 +50,10 @@ class TbBooks extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => true,
+            ],
+            'price' => [
+                'type' => 'INT',
+                'constraint' => 11,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
