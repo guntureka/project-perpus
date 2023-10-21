@@ -8,14 +8,15 @@ use App\Models\UsersModel;
 class Register extends BaseController
 {
     public function index()
-    {   
+    {
         return view('pages/register');
     }
 
-    public function create() {
+    public function create()
+    {
         helper(['form']);
 
-        if($this->request->getMethod() == "post") {
+        if ($this->request->getMethod() == "post") {
 
             $rules = [
                 'name' => [
@@ -58,10 +59,12 @@ class Register extends BaseController
                 ],
             ];
 
-            if(!$this->validate($rules)) {
-                dd($this->validator->listErrors());
+            if (!$this->validate($rules)) {
+                $errors = $this->validator->getErrors();
+                $errors = implode('<br>', $errors);
+                session()->setFlashdata('errors', $errors);
                 return redirect()->to('/register')->withInput();
-            }else{
+            } else {
                 $userModel = new UsersModel();
 
                 $name = $this->request->getVar('name');
@@ -83,9 +86,8 @@ class Register extends BaseController
                 session()->setFlashdata('success', 'Successful Registration');
                 return redirect()->to('/login');
             }
-        }else{
+        } else {
             return redirect()->to('/register');
         }
-
     }
 }

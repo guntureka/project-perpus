@@ -17,6 +17,38 @@
         $this->include('layout/header');
     } ?>
     <?= $this->renderSection('content'); ?>
+
+    <div id="toast" class="toast display-none text-center text-white">
+    </div>
 </body>
+
+<!-- Toast script -->
+<script>
+    const toast = document.querySelector('#toast');
+    // Check if success data exists and assign it to a JavaScript variable
+    const successData = '<?= session()->getFlashdata('success') ?>';
+    const errorsData = '<?= session()->getFlashdata('errors') ?>';
+
+    if (successData) {
+        toast.classList.add('display-block');
+        toast.classList.add('bg-green');
+        toast.innerHTML = successData;
+        setTimeout(() => {
+            toast.classList.remove('display-block');
+            toast.classList.remove('bg-green');
+            toast.innerHTML = '';
+        }, 5000);
+    } else if (errorsData) {
+        toast.classList.add('display-block');
+        toast.classList.add('bg-red');
+        toast.innerHTML = errorsData;
+        setTimeout(() => {
+            toast.classList.remove('display-block');
+            toast.classList.remove('bg-red');
+            toast.innerHTML = '';
+        }, 5000);
+    }
+</script>
+
 
 </html>
