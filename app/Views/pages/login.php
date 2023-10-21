@@ -2,6 +2,12 @@
 
 <?= $this->section('content'); ?>
 
+<?php if(session()->getFlashdata('error')): ?>
+
+    <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
+
+<?php endif; ?>
+
 <form action="/login" method="post">
     <label for="email">
         <input type="text" name="email" id="email" placeholder="Email">

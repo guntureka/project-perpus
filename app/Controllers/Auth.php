@@ -35,13 +35,14 @@ class Auth extends BaseController
                 ];
 
                 $session->set($ses_data);
+                $session->setFlashdata('success', 'Welcome Back '.$data['name'].'!');
                 return redirect()->to('/');
             }else{
-                $session->setFlashdata('msg', 'Wrong Password');
+                $session->setFlashdata('error', 'Wrong Password');
                 return redirect()->to('/login');
             }
         }else{
-            $session->setFlashdata('msg', 'Email not Found');
+            $session->setFlashdata('error', 'Email not Found');
             return redirect()->to('/login');
         }
     }
