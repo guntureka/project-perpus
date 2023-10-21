@@ -3,8 +3,8 @@
 <?= $this->section('content'); ?>
 
 <form action="/login" method="post">
-    <label for="username">
-        <input type="text" name="username" id="username" placeholder="Username">
+    <label for="email">
+        <input type="text" name="email" id="email" placeholder="Email">
     </label>
     <label for="password">
         <input type="password" name="password" id="password" placeholder="Password">
