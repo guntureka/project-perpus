@@ -10,7 +10,7 @@
         </div>
         <div class="login-container">
             <h1 class="font-bold text-center text-white mb-5 text-5xl">Digital Library</h1>
-            <form action="/login" method="post id=" login-form" class="bg-white p-8 rounded-8">
+            <form action="/login" method="post" id=" login-form" class="bg-white p-8 rounded-8">
                 <h2 class="font-bold text-center text-secondary-2 text-4xl mb-5">LOGIN</h2>
                 <div class="flex flex-column gap-3">
                     <div class="flex flex-column gap-1">
