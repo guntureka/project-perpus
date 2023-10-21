@@ -1,4 +1,4 @@
-<header class="header">
+<nav class="header">
     <div class="header_logo">
         <!-- logo -->
     </div>
@@ -9,4 +9,4 @@
             <li><a href="/register">Register</a></li>
         </ul>
     </nav>
-</header>
+</nav>
