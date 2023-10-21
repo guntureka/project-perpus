@@ -2,29 +2,26 @@
 
 namespace App\Controllers;
 
-use App\Models\BooksModel;
-use CodeIgniter\HTTP\RequestTrait;
+use App\Models\LoansModel;
+use App\Models\UsersModel;
 use CodeIgniter\RESTful\ResourceController;
 
-class Home extends ResourceController
+class Profile extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format
      *
      * @return mixed
      */
-    use RequestTrait;
     public function index()
     {
         //
-        session();
-
-        $booksModel = new BooksModel();
-
-        $data['books'] = $booksModel->findAll();
-
-        //dd($data);
-        return view('pages/home', $data);
+        $userModel = new UsersModel();
+        $loanModel = new LoansModel();
+        $data['loans'] = $loanModel->where('user_id', session()->get('user_id'))->findAll();
+        $data['user'] = $userModel->where('user_id', session()->get('user_id'))->first();
+        
+        return view('pages/profile', $data);
     }
 
     /**
@@ -35,6 +32,8 @@ class Home extends ResourceController
     public function show($id = null)
     {
         //
+        $userModel = new UsersModel();
+        $data['user'] = $userModel->where('user_id', $id)->first();
     }
 
     /**
