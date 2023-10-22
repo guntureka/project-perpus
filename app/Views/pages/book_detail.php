@@ -10,6 +10,7 @@
 
 <div>book detail</div>
 
+    <?php if($book): ?>
     <div>
         <h3><?= $book['title'] ?></h3>
         <p><?= $book['synopsis'] ?></p>
@@ -20,5 +21,7 @@
             <img src="img/books/<?= $book['book_img']; ?>" alt="<?= $book['book_img']; ?>" width="150px">
         </p>
     </div>
+
+    <?php endif ?>
 
 <?= $this->endSection(); ?>
