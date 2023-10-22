@@ -35,6 +35,12 @@ class Home extends ResourceController
     public function show($id = null)
     {
         //
+        $bookModel = new BooksModel();
+
+        $data['book'] = $bookModel->where('slug', $id)->first();
+
+        return view('pages/book_detail', $data);
+
     }
 
     /**

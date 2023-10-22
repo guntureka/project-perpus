@@ -19,7 +19,9 @@
         <p><?= $row['price'] ?></p>
         <p><?= $row['created_at'] ?></p>
         <p>
-            <img src="img/books/<?= $row['book_img']; ?>" alt="<?= $row['book_img']; ?>">
+            <a href="/<?= $row['slug']; ?>">
+                <img src="img/books/<?= $row['book_img']; ?>" alt="<?= $row['book_img']; ?>" width="150px">
+            </a>
         </p>
     </div>
 <?php endforeach; ?>

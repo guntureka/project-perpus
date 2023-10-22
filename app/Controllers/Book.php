@@ -135,17 +135,28 @@ class Book extends ResourceController
             }else{
                 $bookModel = new BooksModel();
 
-                $title = $this->request->getVar('title');
-                $slug = url_title($title, '-', true);
-                $synopsis = $this->request->getVar('synopsis');
-                $author = $this->request->getVar('author');
-                $publisher = $this->request->getVar('publisher');
+                $title          = $this->request->getVar('title');
+                $slug           = url_title($title, '-', true);
+                $synopsis       = $this->request->getVar('synopsis');
+                $author         = $this->request->getVar('author');
+                $publisher      = $this->request->getVar('publisher');
                 $published_year = $this->request->getVar('published_year');
-                $genre = $this->request->getVar('genre');
-                $book_img = $this->request->getFile('book_img');
-                $price = $this->request->getVar('price');
-
-                $book_img->move('img/books');
+                $genre          = $this->request->getVar('genre');
+                $book_img       = $this->request->getFile('book_img');
+                $price          = $this->request->getVar('price');
+                
+                //handling slug
+                $slugDb = $bookModel->first()['slug'];
+                if($slugDb){
+                    if($slugDb == $slug){
+                        session()->setFlashData('error', 'Title already exist');
+                        return redirect()->to('/book/add')->withInput();
+                    }
+                }
+                
+                //handling img upload
+                $bookImgName = $book_img->getRandomName();
+                $book_img->move('img/books',$bookImgName);
 
                 $data = [
                     'title' => $title,
@@ -155,7 +166,7 @@ class Book extends ResourceController
                     'publisher' => $publisher,
                     'published_year' => $published_year,
                     'genre' => $genre,
-                    'book_img' => $book_img->getName(),
+                    'book_img' => $bookImgName,
                     'price' => $price,
                 ];
 
@@ -181,7 +192,7 @@ class Book extends ResourceController
         //
         $bookModel = new BooksModel();
 
-        $data['book'] = $bookModel->where('book_id', $id)->first();
+        $data['book'] = $bookModel->where('slug', $id)->first();
         return view('pages/dashboard/book/edit_book', $data);
     }
 
@@ -252,9 +263,9 @@ class Book extends ResourceController
                     ],
                 ],
                 'book_img' => [
-                    'rules' => 'uploaded[book_img]|max_size[book_img,10240]|is_image[book_img]',
+                    'rules' => 'max_size[book_img,10240]|is_image[book_img]',
                     'errors' => [
-                        'uploaded' => 'Photo is required',
+                        //'uploaded' => 'Photo is required',
                         'max_size' => 'Photo is too big',
                         'is_image' => 'Photo is not valid',
                     ],
@@ -268,17 +279,38 @@ class Book extends ResourceController
             }else{
                 $bookModel = new BooksModel();
 
-                $title = $this->request->getVar('title');
-                $slug = url_title($title, '-', true);
-                $synopsis = $this->request->getVar('synopsis');
-                $author = $this->request->getVar('author');
-                $publisher = $this->request->getVar('publisher');
+                $title          = $this->request->getVar('title');
+                $slug           = url_title($title, '-', true);
+                $synopsis       = $this->request->getVar('synopsis');
+                $author         = $this->request->getVar('author');
+                $publisher      = $this->request->getVar('publisher');
                 $published_year = $this->request->getVar('published_year');
-                $genre = $this->request->getVar('genre');
-                $book_img = $this->request->getFile('book_img');
-                $price = $this->request->getVar('price');
+                $genre          = $this->request->getVar('genre');
+                $book_img       = $this->request->getFile('book_img'); 
+                $price          = $this->request->getVar('price');
+                
+                //handling slug
+                $slugDb = $bookModel->first()['slug'];
+                if($slugDb){
+                    if($slugDb == $slug){
+                        session()->setFlashData('error', 'Title already exist');
+                        return redirect()->to('/book/edit/'.$id)->withInput();
+                    }
+                }
 
-                $book_img->move('img/books', $book_img->getName(), true);
+                //handling img upload
+                $oldImgName = $bookModel->where('slug', $id)->first()['book_img'];
+                $bookImgName = $book_img->getName();
+                if($book_img->getError() == 4){
+                    $bookImgName = $oldImgName;
+                }else{
+                    if($oldImgName != 'default.jpg'){
+                        unlink('img/books/'.$oldImgName);
+                    }
+                    $bookImgName = $book_img->getRandomName();
+                    $book_img->move('img/books', $bookImgName);
+                }
+                
 
                 $data = [
                     'title' => $title,
@@ -288,11 +320,13 @@ class Book extends ResourceController
                     'publisher' => $publisher,
                     'published_year' => $published_year,
                     'genre' => $genre,
-                    'book_img' => $book_img->getName(),
+                    'book_img' => $bookImgName,
                     'price' => $price,
                 ];
 
-                $bookModel->update($id,$data);
+                $book_id = $bookModel->where('slug',$id)->first()['book_id'];
+
+                $bookModel->update($book_id,$data);
 
                 session()->setFlashdata('success', 'Book has been updated');
 

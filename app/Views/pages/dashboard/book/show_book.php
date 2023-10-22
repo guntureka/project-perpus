@@ -41,12 +41,12 @@
                     <img src="img/books/<?= $row['book_img']; ?>" alt="<?= $row['book_img']; ?>" width="150px">
                 </td>
                 <td>
-                    <a href="/book/edit/<?= $row['book_id'] ?>">
+                    <a href="/book/edit/<?= $row['slug'] ?>">
                         <button>
                             edit
                         </button>
                     </a>
-                    <a href="/book/delete/<?= $row['book_id'] ?>">
+                    <a href="/book/delete/<?= $row['slug'] ?>">
                         <button>
                             delete
                         </button>

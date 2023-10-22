@@ -66,6 +66,7 @@ class TbBooks extends Migration
             
         ]);
         $this->forge->addKey('book_id', true);
+        $this->forge->addUniqueKey('slug');
         $this->forge->createTable('tb_books');
     }
 

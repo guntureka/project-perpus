@@ -11,14 +11,13 @@
 <div>book detail</div>
 
     <div>
-        <h3><?= $books['title'] ?></h3>
-        <p><?= $books['synopsis'] ?></p>
-        <p><?= $books['author'] ?></p>
-        <p><?= $books['publisher'] ?></p>
-        <p><?= $books['price'] ?></p>
-        <p><?= $books['created_at'] ?></p>
+        <h3><?= $book['title'] ?></h3>
+        <p><?= $book['synopsis'] ?></p>
+        <p><?= $book['author'] ?></p>
+        <p><?= $book['publisher'] ?></p>
+        <p><?= $book['price'] ?></p>
         <p>
-            <img src="img/books/<?= $books['book_img']; ?>" alt="<?= $books['book_img']; ?>">
+            <img src="img/books/<?= $book['book_img']; ?>" alt="<?= $book['book_img']; ?>" width="150px">
         </p>
     </div>
 

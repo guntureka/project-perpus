@@ -3,7 +3,7 @@
 <?= $this->section('content'); ?>
 
 <div>
-    <a href="/dashboard">
+    <a href="/book">
         <button>
             <h3>Back</h3>
         </button>
@@ -12,7 +12,7 @@
 
 <div>
     <h1>edit Book</h1>
-    <form action="/book/edit/<?= $book['book_id']; ?>" method="post" enctype="multipart/form-data">
+    <form action="/book/edit/<?= $book['slug']; ?>" method="post" enctype="multipart/form-data">
         <div>
             <label for="title">Title</label>
             <input type="text" name="title" id="title" value="<?= $book['title']; ?>">
@@ -45,8 +45,11 @@
         </div>
         <div>
             <label for="book_img">Photo</label>
-            <input type="file" name="book_img" id="book_img" value="<?= $book['book_img']; ?>">
+            <input type="file" name="book_img" id="book_img" value="img/books/<?= $book['book_img']; ?>">
             
+        </div>
+        <div>
+            <img src="/img/books/<?= $book['book_img']; ?>" alt="book img" width="150px">
         </div>
         <div>
             <label for="price">Price</label>
