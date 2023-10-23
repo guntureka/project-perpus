@@ -18,7 +18,8 @@ $routes->resource('register', ['filter' => 'isLogin']);
 //book
 $routes->get('/book', 'Book::index', ['filter' => 'authGuard']);
 //profile
-$routes->get('/profile/(:num)', 'Profile::show/$1', ['filter' => 'authGuard']);
+$routes->get('/profile', 'Profile::index', ['filter' => 'authGuard']);
+//$routes->get('/profile/(:num)', 'Profile::show/$1', ['filter' => 'authGuard']);
 $routes->get('/profile/edit/(:num)', 'Profile::edit/$1', ['filter' => 'authGuard']);
 $routes->post('/profile/edit/(:num)', 'Profile::update/$1', ['filter' => 'authGuard']);
 $routes->post('/profile/edit/password/(:num)', 'Profile::updatePassword/$1', ['filter' => 'authGuard']);

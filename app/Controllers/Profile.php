@@ -16,6 +16,12 @@ class Profile extends ResourceController
     public function index()
     {
         //
+        $id = session()->get('user_id');
+        $userModel = new UsersModel();
+        $loanModel = new LoansModel();
+        $data['loans'] = $loanModel->where('user_id', $id)->findAll();
+        $data['user'] = $userModel->where('user_id', $id)->first();
+        return view('pages/profile/profile', $data);
     }
 
     /**
