@@ -69,13 +69,14 @@ class Register extends BaseController
                 $password = $this->request->getVar('password');
                 $user_img = $this->request->getFile('user_img');
 
-                $user_img->move('img/profile');
+                $userImgName = $user_img->getRandomName();
+                $user_img->move('img/profile', $userImgName);
 
                 $data = [
                     'name' => $name,
                     'email' => $email,
                     'password' => password_hash($password, PASSWORD_DEFAULT),
-                    'user_img' => $user_img->getName(),
+                    'user_img' => $userImgName,
                 ];
 
                 $userModel->insert($data);
