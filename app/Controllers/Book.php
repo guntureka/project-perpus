@@ -146,11 +146,13 @@ class Book extends ResourceController
                 $price          = $this->request->getVar('price');
                 
                 //handling slug
-                $slugDb = $bookModel->first()['slug'];
-                if($slugDb){
-                    if($slugDb == $slug){
-                        session()->setFlashData('error', 'Title already exist');
-                        return redirect()->to('/book/add')->withInput();
+                if($bookModel->findAll() != 0 ){
+                    $slugDb = $bookModel->first()['slug'];
+                    if($slugDb){
+                        if($slugDb == $slug){
+                            session()->setFlashData('error', 'Title already exist');
+                            return redirect()->to('/book/add')->withInput();
+                        }
                     }
                 }
                 
