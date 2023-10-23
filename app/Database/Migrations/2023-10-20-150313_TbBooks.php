@@ -23,10 +23,6 @@ class TbBooks extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'description' => [
-                'type' => 'TEXT',
-                'null' => true,
-            ],
             'synopsis' => [
                 'type' => 'TEXT',
                 'null' => true,
@@ -55,6 +51,10 @@ class TbBooks extends Migration
                 'constraint' => '255',
                 'null' => true,
             ],
+            'price' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
@@ -66,6 +66,7 @@ class TbBooks extends Migration
             
         ]);
         $this->forge->addKey('book_id', true);
+        $this->forge->addUniqueKey('slug');
         $this->forge->createTable('tb_books');
     }
 

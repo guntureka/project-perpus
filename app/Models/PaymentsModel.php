@@ -4,31 +4,26 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class BooksModel extends Model
+class PaymentsModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'tb_books';
-    protected $primaryKey       = 'book_id';
+    protected $table            = 'tb_payments';
+    protected $primaryKey       = 'payment_id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'title',
-        'slug',
-        'synopsis',
-        'author',
-        'publisher',
-        'published_year',
-        'genre',
-        'book_img',
-        'price',
+        'loan_id',
+        'load_cost',
+        'late_cost',
+        'status',
         'created_at',
         'updated_at',
     ];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
