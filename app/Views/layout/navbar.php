@@ -11,7 +11,7 @@
         <a href="<?= base_url('/list'); ?>">List Peminjaman</a>
       </li>
       <li>
-        <a id="logout-btn" href="<?= base_url('/pages/contact'); ?>" class="py-3 px-4 bg-white text-secondary-2 rounded-8 font-bold">Logout</a>
+        <a id="logout-btn" href="<?= base_url('/logout'); ?>" class="py-3 px-4 bg-white text-secondary-2 rounded-8 font-bold">Logout</a>
       </li>
     </ul>
 </nav>
