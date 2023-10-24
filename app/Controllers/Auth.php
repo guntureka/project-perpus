@@ -56,6 +56,7 @@ class Auth extends BaseController
                     'user_id' => $data['user_id'],
                     'name' => $data['name'],
                     'email' => $data['email'],
+                    'is_admin' => $data['is_admin'],
                     'logged_in' => TRUE
                 ];
 
@@ -72,10 +73,8 @@ class Auth extends BaseController
         }
     }
 
-    public function logout()
-    {
-        $session = session();
-        $session->destroy();
+    public function logout(){
+        session()->destroy();
         return redirect()->to('/login');
     }
 }

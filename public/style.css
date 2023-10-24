@@ -35,6 +35,9 @@
 .flex-column {
     flex-direction: column;
 }
+.flex-row {
+    flex-direction: row;
+}
 .gap-8 {
     gap: 32px;
 }
@@ -71,17 +74,29 @@
 .h-fit {
     height: fit-content;
 }
+.h-80 {
+    height: 80vh;
+}
 .w-screen {
     width: 100vw;
 }
 .w-full {
     width: 100%;
 }
+.w-90 {
+    width: 90%;
+}
 .w-50 {
     width: 50%;
 }
+.w-45 {
+    width: 45%;
+}
 .w-40 {
     width: 40%;
+}
+.max-w-50 {
+    max-width: 50%;
 }
 .align-center {
     align-items: center;
@@ -138,6 +153,9 @@
 .bg-white {
     background-color: #fff;
 }
+.bg-primary-1 {
+    background-color: var(--primary-1);
+}
 .bg-secondary-1 {
     background-color: var(--secondary-1);
 }
@@ -160,9 +178,28 @@
     padding-top: 12px;
     padding-bottom: 12px;
 }
+.py-4 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+.py-10 {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.px-4 {
+    padding-left: 16px;
+    padding-right: 16px;
+}
 .px-5 {
     padding-left: 20px;
     padding-right: 20px;
+}
+.px-8 {
+    padding-left: 32px;
+    padding-right: 32px;
+}
+.mb-10 {
+    margin-bottom: 40px;
 }
 .mb-8 {
     margin-bottom: 32px;
@@ -172,6 +209,10 @@
 }
 .mb-4 {
     margin-bottom: 16px;
+}
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
 }
 .rounded-8 {
     border-radius: 32px;
@@ -184,6 +225,21 @@
 }
 .display-block {
     display: block;
+}
+.word-wrap {
+    word-wrap: break-word;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.cursor-text {
+    cursor: text;
+}
+.position-relative {
+    position: relative;
+}
+.position-absolute {
+    position: absolute;
 }
 
 /* Input Form */
@@ -202,6 +258,16 @@ input {
     opacity: 0.5;
 }
 
+#search-container ::placeholder {
+    color: var(--primary-2);
+    opacity: 1;
+}
+
+#search-container ::-webkit-input-placeholder {
+    color: var(--primary-2);
+    opacity: 1;
+}
+
 button {
     outline: none;
     border: none;
@@ -209,6 +275,31 @@ button {
 }
 
 /* pages */
+nav {
+    align-items: center;
+    background-color: var(--secondary-1);
+    color: #fff;
+    padding: 30px 60px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+nav li {
+    list-style: none;
+    display: inline-block;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav li #logout-btn:hover {
+    background-color: #c0bfbf;
+}
+
 .toast {
     position: fixed;
     top: 0;
@@ -256,22 +347,31 @@ button {
 .register-container .profile-img-container img {
     width: 100%;
 }
+
+#home #book-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 40%);
+    grid-gap: 32px 16px;
+    justify-content: space-between;
+}
+#book-container .book-img {
+    height: 250px;
+}
+#book-container .book-img #img-link {
+    background: rgba(34, 40, 49, 0.81);
+}
+#book-container .book-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-    .header_nav {
-        display: flex;
-        justify-content: space-between;
-        gap: 1.25rem;
-    }
-
     #login .img-container {
         width: 45%;
         display: block;
@@ -289,6 +389,18 @@ button {
     #register .register-container {
         width: 45%;
     }
+
+    #home #book-container {
+        grid-template-columns: repeat(3, 30%);
+        grid-gap: 32px 16px;
+    }
+    #book-container .book-img {
+        height: 400px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -300,12 +412,15 @@ button {
     #register .register-container {
         width: 35%;
     }
+    #home #book-container {
+        grid-template-columns: repeat(4, 20%);
+        grid-gap: 32px 16px;
+    }
+    #book-container .book-img {
+        height: 400px;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    .header {
-        display: flex;
-        justify-content: space-between;
-    }
 }
