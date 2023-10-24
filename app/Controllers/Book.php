@@ -24,7 +24,7 @@ class Book extends ResourceController
 
         $data['books'] = $booksModel->findAll();
 
-        return view('pages/dashboard/book/show_book',$data);
+        return view('pages/dashboard/book/show_book', $data);
     }
 
     /**
@@ -63,7 +63,7 @@ class Book extends ResourceController
         //
         helper(['form']);
 
-        if($this->request->getMethod() == 'post'){
+        if ($this->request->getMethod() == 'post') {
             //dd($this->request->getVar());
             $rules = [
                 'title' => [
@@ -128,11 +128,11 @@ class Book extends ResourceController
                     ],
                 ],
             ];
-            
-            if(!$this->validate($rules)){
+
+            if (!$this->validate($rules)) {
                 dd($this->validator->listErrors());
                 return redirect()->to('/admin/book')->withInput();
-            }else{
+            } else {
                 $bookModel = new BooksModel();
 
                 $title          = $this->request->getVar('title');
@@ -144,21 +144,21 @@ class Book extends ResourceController
                 $genre          = $this->request->getVar('genre');
                 $book_img       = $this->request->getFile('book_img');
                 $price          = $this->request->getVar('price');
-                
+
                 //handling slug
-                if($bookModel->findAll() != 0 ){
-                    $slugDb = $bookModel->first()['slug'];
-                    if($slugDb){
-                        if($slugDb == $slug){
+                if ($bookModel->findAll() != 0) {
+                    $slugDb = $bookModel->where('slug', $slug)->first();
+                    if ($slugDb) {
+                        if ($slugDb == $slug) {
                             session()->setFlashData('error', 'Title already exist');
                             return redirect()->to('/book/add')->withInput();
                         }
                     }
                 }
-                
+
                 //handling img upload
                 $bookImgName = $book_img->getRandomName();
-                $book_img->move('img/books',$bookImgName);
+                $book_img->move('img/books', $bookImgName);
 
                 $data = [
                     'title' => $title,
@@ -178,7 +178,7 @@ class Book extends ResourceController
 
                 return redirect()->to('/book');
             }
-        }else{
+        } else {
             session()->setFlashdata('error', 'Failed to add book');
             return redirect()->to('/book/add');
         }
@@ -208,7 +208,7 @@ class Book extends ResourceController
         //
         helper(['form']);
 
-        if($this->request->getMethod() == 'post'){
+        if ($this->request->getMethod() == 'post') {
             //dd($this->request->getVar());
             $rules = [
                 'title' => [
@@ -273,12 +273,12 @@ class Book extends ResourceController
                     ],
                 ],
             ];
-            
-            if(!$this->validate($rules)){
+
+            if (!$this->validate($rules)) {
                 //dd($this->validator->listErrors());
                 session()->setFlashdata('error', $this->validator->listErrors());
-                return redirect()->to('/book/edit/'.$id)->withInput();
-            }else{
+                return redirect()->to('/book/edit/' . $id)->withInput();
+            } else {
                 $bookModel = new BooksModel();
 
                 $title          = $this->request->getVar('title');
@@ -288,31 +288,31 @@ class Book extends ResourceController
                 $publisher      = $this->request->getVar('publisher');
                 $published_year = $this->request->getVar('published_year');
                 $genre          = $this->request->getVar('genre');
-                $book_img       = $this->request->getFile('book_img'); 
+                $book_img       = $this->request->getFile('book_img');
                 $price          = $this->request->getVar('price');
-                
+
                 //handling slug
                 $slugDb = $bookModel->first()['slug'];
-                if($slugDb){
-                    if($slugDb == $slug){
+                if ($slugDb) {
+                    if ($slugDb == $slug) {
                         session()->setFlashData('error', 'Title already exist');
-                        return redirect()->to('/book/edit/'.$id)->withInput();
+                        return redirect()->to('/book/edit/' . $id)->withInput();
                     }
                 }
 
                 //handling img upload
                 $oldImgName = $bookModel->where('slug', $id)->first()['book_img'];
                 $bookImgName = $book_img->getName();
-                if($book_img->getError() == 4){
+                if ($book_img->getError() == 4) {
                     $bookImgName = $oldImgName;
-                }else{
-                    if($oldImgName != 'default.jpg'){
-                        unlink('img/books/'.$oldImgName);
+                } else {
+                    if ($oldImgName != 'default.jpg') {
+                        unlink('img/books/' . $oldImgName);
                     }
                     $bookImgName = $book_img->getRandomName();
                     $book_img->move('img/books', $bookImgName);
                 }
-                
+
 
                 $data = [
                     'title' => $title,
@@ -326,20 +326,18 @@ class Book extends ResourceController
                     'price' => $price,
                 ];
 
-                $book_id = $bookModel->where('slug',$id)->first()['book_id'];
+                $book_id = $bookModel->where('slug', $id)->first()['book_id'];
 
-                $bookModel->update($book_id,$data);
+                $bookModel->update($book_id, $data);
 
                 session()->setFlashdata('success', 'Book has been updated');
 
                 return redirect()->to('/book');
             }
-        }else{
+        } else {
             session()->setFlashdata('error', 'Failed to update book');
             return redirect()->to('/book/edit');
         }
-
-        
     }
 
     /**

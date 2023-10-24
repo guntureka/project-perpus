@@ -38,30 +38,15 @@
 </body>
 
 <script>
-  const data = [{
-      bookId: 1,
-      bookTitle: 'Bumi',
-      bookAuthor: 'Tere Liye',
-      bookYear: 2021,
-      bookImg: '/book/bumi.jpeg',
-      bookSlug: 'bumi',
-    },
-    {
-      bookId: 2,
-      bookTitle: 'Bulan',
-      bookAuthor: 'Tere Liye',
-      bookYear: 2021,
-      bookImg: '/book/bumi.jpeg',
-      bookSlug: 'bulan',
-    },
-    {
-      bookId: 3,
-      bookTitle: 'Bulans',
-      bookAuthor: 'Tere Liye',
-      bookYear: 2023,
-      bookImg: '/book/bumi.jpeg',
-      bookSlug: 'bulans',
-    }
+  const data = [
+    <?php foreach ($books as $book) : ?> {
+        bookTitle: '<?= $book['title']; ?>',
+        bookAuthor: '<?= $book['author']; ?>',
+        bookYear: '<?= $book['published_year']; ?>',
+        bookImg: '<?= $book['book_img']; ?>',
+        bookSlug: '<?= $book['slug']; ?>',
+      },
+    <?php endforeach; ?>
   ];
 
   const bookContainer = document.querySelector('#book-container');
@@ -87,7 +72,7 @@
           <div class="position-absolute flex w-full h-full align-center justify-center" id="img-link" style="display: none;">
             <a href="/book/${book.bookSlug}" class="text-secondary-2 rounded-8 px-8 py-4 bg-primary-1 font-bold">Lihat Buku</a>
           </div>
-          <img src="${book.bookImg}" alt="" class="w-full">
+          <img src="/img/books/${book.bookImg}" alt="" class="w-full">
         </div>
         <div>
           <h4 class="text-xl font-bold">${book.bookTitle} (${book.bookYear})</h4>
@@ -150,21 +135,5 @@
     }
   });
 </script>
-
-<?php foreach($books as $row): ?>
-    <div>
-        <h3><?= $row['title'] ?></h3>
-        <p><?= $row['synopsis'] ?></p>
-        <p><?= $row['author'] ?></p>
-        <p><?= $row['publisher'] ?></p>
-        <p><?= $row['price'] ?></p>
-        <p><?= $row['created_at'] ?></p>
-        <p>
-            <a href="/<?= $row['slug']; ?>">
-                <img src="img/books/<?= $row['book_img']; ?>" alt="<?= $row['book_img']; ?>" width="150px">
-            </a>
-        </p>
-    </div>
-<?php endforeach; ?>
 
 <?= $this->endSection(); ?>
