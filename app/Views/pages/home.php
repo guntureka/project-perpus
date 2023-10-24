@@ -9,7 +9,7 @@
         di Perpustakaan Digital</h1>
     </div>
     <div class="w-45">
-      <img src="/img/home-reading-book.png" alt="" class="w-full">
+      <img src="/img/home-reading-book.svg" alt="" class="w-full">
     </div>
   </div>
   <main class="bg-secondary-1 text-primary-1 w-full">
@@ -18,7 +18,7 @@
         <h3 class="text-3xl font-bold">Pilih Buku Yang Anda Suka</h3>
         <div class="flex py-3 px-4 h-fit align-center gap-3 text-secondary-2 bg-primary-1 rounded-8 cursor-text" for="search" id="search-container">
           <label for="search"><i class="fa-solid fa-magnifying-glass font-bold"></i></label>
-          <input type="text" name="search" id="search" placeholder="Cari Buku" class="font-inter font-bold text-secondary-1">
+          <input type="text" name="search" id="search" placeholder="Cari Buku" class="font-inter font-bold text-secondary-1 bg-primary-1">
         </div>
       </div>
 
@@ -54,9 +54,12 @@
   const searchContainer = document.querySelector('#search-container');
   const searchInput = document.querySelector('#search');
   const originalBooks = [...data]; // Store a copy of the original book data;
+  if (data.length === 0) {
+    displayNoBooksFoundMessage();
+  }
 
   function displayBooks(books) {
-    // bookContainer.innerHTML = ''; // Clear the existing book cards.
+    bookContainer.innerHTML = ''; // Clear the existing book cards.
     bookContainer.style.display = 'grid'; // Display the book container
     noBooksFoundContainer.style.display = 'none'; // Hide the "Buku tidak ditemukan" message
     for (let i = 0; i < books.length; i++) {
