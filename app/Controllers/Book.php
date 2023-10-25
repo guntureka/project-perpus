@@ -350,7 +350,7 @@ class Book extends ResourceController
         //
         $bookModel = new BooksModel();
 
-        $bookModel->delete($id);
+        $bookModel->where('slug', $id)->delete();
 
         session()->setFlashdata('message', 'Book has been deleted');
 
