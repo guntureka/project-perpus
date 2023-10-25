@@ -17,8 +17,9 @@
         <p><?= $book['author'] ?></p>
         <p><?= $book['publisher'] ?></p>
         <p><?= $book['price'] ?></p>
+        <p><?= $book['quantity_available'] ?></p>
         <p>
-            <img src="img/books/<?= $book['book_img']; ?>" alt="<?= $book['book_img']; ?>" width="150px">
+            <img src="/img/books/<?= $book['book_img']; ?>" alt="<?= $book['book_img']; ?>" width="150px">
         </p>
     </div>
 

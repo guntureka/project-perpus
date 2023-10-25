@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\BooksModel;
+use App\Models\LoansModel;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -36,8 +37,10 @@ class Book extends ResourceController
     {
         session();
         $bookModel = new BooksModel();
+        $loansModel = new LoansModel();
 
         $data['books'] = $bookModel->where('slug', $id)->first();
+        $data['loans'] = $loansModel->where('book_id', $data['books']['book_id'])->findAll();
         //dd($data['books']);
         return view('pages/book_detail', $data);
     }
@@ -127,33 +130,37 @@ class Book extends ResourceController
                         'is_image' => 'Photo is not valid',
                     ],
                 ],
+                'quantity_available' => [
+                    'rules' => 'required|numeric',
+                    'errors' => [
+                        'required' => 'Quantity is required',
+                        'numeric' => 'Quantity must be numeric',
+                    ],
+                ],
             ];
 
             if (!$this->validate($rules)) {
                 dd($this->validator->listErrors());
-                return redirect()->to('/admin/book')->withInput();
+                return redirect()->to('/dashboard/book')->withInput();
             } else {
                 $bookModel = new BooksModel();
 
-                $title          = $this->request->getVar('title');
-                $slug           = url_title($title, '-', true);
-                $synopsis       = $this->request->getVar('synopsis');
-                $author         = $this->request->getVar('author');
-                $publisher      = $this->request->getVar('publisher');
-                $published_year = $this->request->getVar('published_year');
-                $genre          = $this->request->getVar('genre');
-                $book_img       = $this->request->getFile('book_img');
-                $price          = $this->request->getVar('price');
+                $title              = $this->request->getVar('title');
+                $slug               = url_title($title, '-', true);
+                $synopsis           = $this->request->getVar('synopsis');
+                $author             = $this->request->getVar('author');
+                $publisher          = $this->request->getVar('publisher');
+                $published_year     = $this->request->getVar('published_year');
+                $genre              = $this->request->getVar('genre');
+                $book_img           = $this->request->getFile('book_img');
+                $price              = $this->request->getVar('price');
+                $quantity_available = $this->request->getVar('quantity_available');
 
                 //handling slug
-                if ($bookModel->findAll() != 0) {
-                    $slugDb = $bookModel->where('slug', $slug)->first();
-                    if ($slugDb) {
-                        if ($slugDb == $slug) {
-                            session()->setFlashData('error', 'Title already exist');
-                            return redirect()->to('/book/add')->withInput();
-                        }
-                    }
+                $slugDb = $bookModel->where('slug', $slug)->first()['slug'];
+                if($slugDb){
+                    session()->setFlashData('error', 'Title already exist');
+                    return redirect()->to('/book/add')->withInput();
                 }
 
                 //handling img upload
@@ -170,6 +177,7 @@ class Book extends ResourceController
                     'genre' => $genre,
                     'book_img' => $bookImgName,
                     'price' => $price,
+                    'quantity_available' => $quantity_available,
                 ];
 
                 $bookModel->insert($data);
@@ -272,6 +280,13 @@ class Book extends ResourceController
                         'is_image' => 'Photo is not valid',
                     ],
                 ],
+                'quantity_available' => [
+                    'rules' => 'required|numeric',
+                    'errors' => [
+                        'required' => 'Quantity is required',
+                        'numeric' => 'Quantity must be numeric',
+                    ],
+                ],
             ];
 
             if (!$this->validate($rules)) {
@@ -290,13 +305,21 @@ class Book extends ResourceController
                 $genre          = $this->request->getVar('genre');
                 $book_img       = $this->request->getFile('book_img');
                 $price          = $this->request->getVar('price');
+                $quantity_available = $this->request->getVar('quantity_available');
+                //$is_borrowed    = $this->request->getVar('is_borrowed');
 
                 //handling slug
-                $slugDb = $bookModel->first()['slug'];
-                if ($slugDb) {
-                    if ($slugDb == $slug) {
-                        session()->setFlashData('error', 'Title already exist');
-                        return redirect()->to('/book/edit/' . $id)->withInput();
+                if ($slug == $id) {
+                    $slug = $id;
+                } else {
+                    if ($bookModel->findAll() != 0) {
+                        $slugDb = $bookModel->where('slug', $slug)->first();
+                        if ($slugDb) {
+                            if ($slugDb == $slug) {
+                                session()->setFlashData('error', 'Title already exist');
+                                return redirect()->to('/book/edit/' . $id)->withInput();
+                            }
+                        }
                     }
                 }
 
@@ -324,6 +347,8 @@ class Book extends ResourceController
                     'genre' => $genre,
                     'book_img' => $bookImgName,
                     'price' => $price,
+                    'quantity_available' => $quantity_available,
+                    //'is_borrowed' => $is_borrowed,
                 ];
 
                 $book_id = $bookModel->where('slug', $id)->first()['book_id'];

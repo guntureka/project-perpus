@@ -22,7 +22,7 @@
             <th>Author</th>
             <th>Publisher</th>
             <th>Price</th>
-            <th>Created At</th>
+            <th>Quantity</th>
             <th>Book Image</th>
             <th>Action</th>
     </thead>
@@ -36,9 +36,9 @@
                 <td><?= $row['author'] ?></td>
                 <td><?= $row['publisher'] ?></td>
                 <td><?= $row['price'] ?></td>
-                <td><?= $row['created_at'] ?></td>
+                <td><?= $row['quantity_available'] ?></td>
                 <td>
-                    <img src="img/books/<?= $row['book_img']; ?>" alt="<?= $row['book_img']; ?>" width="150px">
+                    <img src="/img/books/<?= $row['book_img']; ?>" alt="<?= $row['book_img']; ?>" width="150px">
                 </td>
                 <td>
                     <a href="/book/edit/<?= $row['slug'] ?>">

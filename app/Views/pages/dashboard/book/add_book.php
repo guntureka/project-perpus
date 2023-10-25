@@ -53,6 +53,10 @@
             <input type="number" name="price" id="price">
            
         </div>
+        <div>
+            <label for="quantity_available">Quantity</label>
+            <input type="number" name="quantity_available" id="quantity_available">
+        </div>
         <button type="submit">Submit</button>
     </form>
 </div>

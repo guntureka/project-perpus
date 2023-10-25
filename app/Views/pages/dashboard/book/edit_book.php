@@ -54,8 +54,15 @@
         <div>
             <label for="price">Price</label>
             <input type="number" name="price" id="price" value="<?= $book['price']; ?>">
-           
         </div>
+        <div>
+            <label for="quantity_available">Quantity</label>
+            <input type="number" name="quantity_available" id="quantity_available" value="<?= $book['quantity_available']; ?>">
+        </div>
+        <!-- <div>
+            <label for="is_borrowed">Is Borrowed</label>
+            <input type="checkbox" id="is_borrowed" name="is_borrowed" value="<?= $book['is_borrowed']; ?>">
+        </div> -->
         <button type="submit">Submit</button>
     </form>
 </div>

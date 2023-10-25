@@ -51,6 +51,14 @@ class TbBooks extends Migration
                 'constraint' => '255',
                 'null' => true,
             ],
+            // 'is_borrowed' => [
+            //     'type' => 'BOOLEAN',
+            //     'default' => false,
+            // ],
+            'quantity_available' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ], 
             'price' => [
                 'type' => 'INT',
                 'constraint' => 11,

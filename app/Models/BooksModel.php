@@ -22,6 +22,8 @@ class BooksModel extends Model
         'published_year',
         'genre',
         'book_img',
+        //'is_borrowed',
+        'quantity_available',
         'price',
         'created_at',
         'updated_at',
