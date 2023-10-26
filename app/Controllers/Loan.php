@@ -3,29 +3,21 @@
 namespace App\Controllers;
 
 use App\Models\BooksModel;
-use App\models\LoansModel;
-use CodeIgniter\HTTP\RequestTrait;
+use App\Models\LoansModel;
+use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
-class Home extends ResourceController
+class Loan extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format
      *
      * @return mixed
      */
-    use RequestTrait;
+    use ResponseTrait;
     public function index()
     {
         //
-        session();
-
-        $booksModel = new BooksModel();
-
-        $data['books'] = $booksModel->findAll();
-
-        //dd($data);
-        return view('pages/home', $data);
     }
 
     /**
@@ -36,12 +28,6 @@ class Home extends ResourceController
     public function show($id = null)
     {
         //
-        $bookModel = new BooksModel();
-
-        $data['book'] = $bookModel->where('slug', $id)->first();
-
-        return view('pages/book_detail', $data);
-
     }
 
     /**
@@ -62,24 +48,33 @@ class Home extends ResourceController
     public function create()
     {
         //
-         helper(['form']);
+        helper(['form']);
         if($this->request->getMethod() == 'post'){
             $rules = [
-                'book_id' => 'required',
-                'user_id' => 'required',
-                'loan_date' => 'required',
-                'return_date' => 'required',
+                // 'book_id' => 'required',
+                // 'user_id' => 'required',
+                // 'loan_date' => 'required',
+                // 'return_date' => 'required',
+                'slug' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Book id is required'
+                    ]
+                ]
             ];
             if(!$this->validate($rules)){
-                session()->setFlashdata('errors', $this->validator->getErrors());
+                //session()->setFlashdata('error', $this->validator->listErrors());
+                dd($this->validator->listErrors());
                 return redirect()->back()->withInput();
             }else{
                 $loanModel = new LoansModel();
                 $bookModel = new BooksModel();
 
-                $book_id = $this->request->getVar('book_id');
-                $book = $bookModel->where('book_id', $book_id)->first();
-                $book_price = $book['price'];
+                $slug = $this->request->getVar('slug');
+                
+                $book = $bookModel->where('slug', $slug)->first();
+
+                $book_id = $book['book_id'];
                 $user_id = session()->get('user_id');
                 $loan_date = date('Y-m-d');
                 $return_date = date('Y-m-d', strtotime('+7 days'));
@@ -102,6 +97,7 @@ class Home extends ResourceController
         }else{
             return redirect()->to('/')->withInput();
         }
+
     }
 
     /**

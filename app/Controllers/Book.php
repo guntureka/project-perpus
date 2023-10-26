@@ -157,10 +157,14 @@ class Book extends ResourceController
                 $quantity_available = $this->request->getVar('quantity_available');
 
                 //handling slug
-                $slugDb = $bookModel->where('slug', $slug)->first()['slug'];
-                if($slugDb){
-                    session()->setFlashData('error', 'Title already exist');
-                    return redirect()->to('/book/add')->withInput();
+                 if ($bookModel->findAll() != 0) {
+                    $slugDb = $bookModel->where('slug', $slug)->first();
+                    if ($slugDb) {
+                        if ($slugDb == $slug) {
+                            session()->setFlashData('error', 'Title already exist');
+                            return redirect()->to('/book/add')->withInput();
+                        }
+                    }
                 }
 
                 //handling img upload
