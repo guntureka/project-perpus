@@ -18,9 +18,10 @@ class LoansModel extends Model
         'user_id',
         'loan_date',
         'return_date',
+        'is_loan',
+        'fine',
         'created_at',
         'updated_at',
-        'is_loan',
     ];
 
     // Dates
