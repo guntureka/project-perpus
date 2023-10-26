@@ -61,7 +61,7 @@
         </div>
         <!-- <div>
             <label for="is_borrowed">Is Borrowed</label>
-            <input type="checkbox" id="is_borrowed" name="is_borrowed" value="<?= $book['is_borrowed']; ?>">
+            <input type="checkbox" id="is_borrowed" name="is_borrowed" value// $book['is_borrowed']; ?>">
         </div> -->
         <button type="submit">Submit</button>
     </form>

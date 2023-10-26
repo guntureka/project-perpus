@@ -24,7 +24,11 @@ $routes->get('/profile/edit/(:num)', 'Profile::edit/$1', ['filter' => 'authGuard
 $routes->post('/profile/edit/(:num)', 'Profile::update/$1', ['filter' => 'authGuard']);
 $routes->post('/profile/edit/password/(:num)', 'Profile::updatePassword/$1', ['filter' => 'authGuard']);
 
+//$routes->post('/loan', 'Loan::create', ['filter' => 'authGuard']);
+$routes->post('(:segment)/loan', 'Loan::create' ,['filter' => 'authGuard']);
+
 $routes->get('/(:segment)', 'Home::show/$1', ['filter' => 'authGuard']);
+//$routes->post('/(:segment)', 'Home::create', ['filter' => 'authGuard']);
 $routes->get('/book/add', 'Book::new', ['filter' => 'authGuard']);
 $routes->post('/book/add', 'Book::create', ['filter' => 'authGuard']);
 $routes->get('/book/delete/(:segment)', 'Book::delete/$1', ['filter' => 'authGuard']);
