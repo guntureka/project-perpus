@@ -3,18 +3,6 @@
 <?= $this->section('content'); ?>
 
 <div>
-    <?php if($user): ?>
-        <h3><?= $user['name'] ?></h3>
-        <p><?= $user['email'] ?></p>
-        <p>
-            <img src="/img/profile/<?= $user['user_img']; ?>" alt="<?= $user['user_img']; ?>" width="150px">
-        </p>
-    <?php endif ?>
-    <a href="/profile/edit/<?= $user['user_id']; ?>">
-        <button>
-            Edit Profile
-        </button>
-    </a>
     <table>
         <thead>
             <th>No</th>
@@ -48,7 +36,6 @@
         <?php endif ?>
         </tbody>
     </table>
-    
 </div>
 
 <?= $this->endSection(); ?>
