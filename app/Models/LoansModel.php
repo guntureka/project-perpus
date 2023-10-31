@@ -19,7 +19,6 @@ class LoansModel extends Model
         'loan_date',
         'return_date',
         'is_loan',
-        'fine',
         'created_at',
         'updated_at',
     ];

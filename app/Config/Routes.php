@@ -17,6 +17,9 @@ $routes->get('/logout', 'Auth::logout');
 $routes->resource('register', ['filter' => 'isLogin']);
 //book
 $routes->get('/book', 'Book::index', ['filter' => 'authGuard']);
+//loan
+$routes->get('/loan', 'Loan::index', ['filter' => 'authGuard']);
+$routes->post('/loan/return/(:num)', 'Loan::return/$1', ['filter' => 'authGuard']);
 //profile
 $routes->get('/profile', 'Profile::index', ['filter' => 'authGuard']);
 //$routes->get('/profile/(:num)', 'Profile::show/$1', ['filter' => 'authGuard']);

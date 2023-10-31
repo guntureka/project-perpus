@@ -87,10 +87,6 @@
                 Book price
                 <input type="text" name="book_price" id="book_price" value="<?= $book_price; ?>" disabled>
             </label>
-            <label for="fine">
-                Fine
-                <input type="text" name="fine" id="fine" value="<?= $fine; ?>" disabled>
-            </label>
             <input type="hidden" name='slug' id="slug" value="<?= $book['slug']; ?>">
             <button type="submit" <?php if($book_quantity_available == 0): ?> disabled <?php endif ?>>Submit</button>
         </form>

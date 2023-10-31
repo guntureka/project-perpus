@@ -20,21 +20,9 @@ class TbPayments extends Migration
                 'constraint' => 5,
                 'unsigned' => true,
             ],
-            'load_cost' => [
+            'amount' => [
                 'type' => 'INT',
-                'constraint' => 30,
-                'unsigned' => true,
-                'default' => 0,
-            ],
-            'late_cost' => [
-                'type' => 'INT',
-                'constraint' => 30,
-                'unsigned' => true,
-                'default' => 0,
-            ],
-            'status' => [
-                'type' => 'BOOLEAN',
-                'default' => false,
+                'constraint' => 11,
             ],
             'created_at' => [
                 'type' => 'DATETIME',

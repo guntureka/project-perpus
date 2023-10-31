@@ -15,9 +15,7 @@ class PaymentsModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'loan_id',
-        'load_cost',
-        'late_cost',
-        'status',
+        'amount',
         'created_at',
         'updated_at',
     ];

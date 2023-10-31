@@ -43,11 +43,11 @@ class TbLoans extends Migration
                 'type' => 'BOOLEAN',
                 'default' => false,
             ],
-            'fine' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'default' => 0,
-            ],
+            // 'fine' => [
+            //     'type' => 'INT',
+            //     'constraint' => 11,
+            //     'default' => 0,
+            // ],
         ]);
         $this->forge->addKey('loan_id', true);
         $this->forge->addForeignKey('book_id', 'tb_books', 'book_id', 'CASCADE', 'CASCADE');

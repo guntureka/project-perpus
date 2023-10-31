@@ -90,7 +90,6 @@ class Home extends ResourceController
                     'loan_date' => $loan_date,
                     'return_date' => $return_date,
                     'is_loan' => true,
-                    'fine' => 0,
                 ];
 
                 $loanModel->insert($data);
