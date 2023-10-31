@@ -19,7 +19,7 @@ class Profile extends ResourceController
         $id = session()->get('user_id');
         $userModel = new UsersModel();
         $loanModel = new LoansModel();
-        $data['loans'] = $loanModel->where('user_id', $id)->findAll();
+        $data['loans'] = $loanModel->where('user_id', $id)->join('tb_books', 'tb_books.book_id = tb_loans.book_id')->findAll();
         $data['user'] = $userModel->where('user_id', $id)->first();
         return view('pages/profile/profile', $data);
     }
@@ -164,7 +164,7 @@ class Profile extends ResourceController
                 $userModel->update($id, $data);
 
                 session()->setFlashdata('success', 'Successfuly update profile');
-                return redirect()->to('/profile/'.$id);    
+                return redirect()->to('/profile');    
             }
         }else{
             session()->setFlashdata('error', 'Failed update profile');
@@ -225,7 +225,7 @@ class Profile extends ResourceController
                 $userModel->update($id, $data);
 
                 session()->setFlashdata('success', 'Successfuly update password');
-                return redirect()->to('/profile/'.$id);    
+                return redirect()->to('/profile');    
             }
         }else{
             session()->setFlashdata('error', 'Failed update password');

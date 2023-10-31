@@ -27,6 +27,10 @@ $routes->get('/profile/edit/(:num)', 'Profile::edit/$1', ['filter' => 'authGuard
 $routes->post('/profile/edit/(:num)', 'Profile::update/$1', ['filter' => 'authGuard']);
 $routes->post('/profile/edit/password/(:num)', 'Profile::updatePassword/$1', ['filter' => 'authGuard']);
 
+//list
+$routes->get('/list', 'ListLoan::index', ['filter' => 'authGuard']);
+
+
 //$routes->post('/loan', 'Loan::create', ['filter' => 'authGuard']);
 $routes->post('(:segment)/loan', 'Loan::create' ,['filter' => 'authGuard']);
 
