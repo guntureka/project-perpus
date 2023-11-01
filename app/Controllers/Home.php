@@ -39,9 +39,7 @@ class Home extends ResourceController
         $bookModel = new BooksModel();
 
         $data['book'] = $bookModel->where('slug', $id)->first();
-
         return view('pages/book_detail', $data);
-
     }
 
     /**
@@ -62,18 +60,18 @@ class Home extends ResourceController
     public function create()
     {
         //
-         helper(['form']);
-        if($this->request->getMethod() == 'post'){
+        helper(['form']);
+        if ($this->request->getMethod() == 'post') {
             $rules = [
                 'book_id' => 'required',
                 'user_id' => 'required',
                 'loan_date' => 'required',
                 'return_date' => 'required',
             ];
-            if(!$this->validate($rules)){
+            if (!$this->validate($rules)) {
                 session()->setFlashdata('errors', $this->validator->getErrors());
                 return redirect()->back()->withInput();
-            }else{
+            } else {
                 $loanModel = new LoansModel();
                 $bookModel = new BooksModel();
 
@@ -98,7 +96,7 @@ class Home extends ResourceController
                 session()->setFlashdata('success', 'Loan success');
                 return redirect()->to('/')->withInput();
             }
-        }else{
+        } else {
             return redirect()->to('/')->withInput();
         }
     }
