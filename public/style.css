@@ -77,6 +77,9 @@
 .h-80 {
     height: 80vh;
 }
+.h-70 {
+    height: 70vh;
+}
 .w-screen {
     width: 100vw;
 }
@@ -85,6 +88,9 @@
 }
 .w-90 {
     width: 90%;
+}
+.w-80 {
+    width: 80%;
 }
 .w-50 {
     width: 50%;
@@ -115,6 +121,12 @@
 }
 .text-tertiary-1 {
     color: var(--tertiary-1);
+}
+.text-red {
+    color: var(--red);
+}
+.text-green {
+    color: #00b894;
 }
 .text-center {
     text-align: center;
@@ -174,6 +186,10 @@
 .p-8 {
     padding: 32px;
 }
+.py-2 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
 .py-3 {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -197,6 +213,18 @@
 .px-8 {
     padding-left: 32px;
     padding-right: 32px;
+}
+.mt-5 {
+    margin-top: 20px;
+}
+.mt-4 {
+    margin-top: 16px;
+}
+.mt-3 {
+    margin-top: 12px;
+}
+.mt-2 {
+    margin-top: 8px;
 }
 .mb-10 {
     margin-bottom: 40px;
@@ -240,6 +268,9 @@
 }
 .position-absolute {
     position: absolute;
+}
+.object-cover {
+    object-fit: cover;
 }
 
 /* Input Form */
