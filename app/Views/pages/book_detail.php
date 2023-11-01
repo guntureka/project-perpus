@@ -31,7 +31,7 @@
                     <?php if ($book['quantity_available'] > 0) : ?>
                         <button id="pinjam" class="bg-tertiary-1 text-primary-1 text-lg font-bold px-4 py-2 rounded-8 w-full text-center hover-bg-tertiary-1">Pinjam Buku</button>
                     <?php else : ?>
-                        <button class="bg-tertiary-1 text-primary-1 text-lg font-bold px-4 py-2 rounded-8 w-full text-center cursor-not-allowed" disabled>Out of Stock</button>
+                        <button class="bg-red text-primary-1 text-lg font-bold px-4 py-2 rounded-8 w-full text-center cursor-not-allowed" disabled>Out of Stock</button>
                     <?php endif ?>
                 </div>
             </div>

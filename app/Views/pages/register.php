@@ -40,7 +40,7 @@
 
                     </div>
                     <p class="text-base mb-3 font-medium">Sudah punya akun? <a href="/login" class="text-tertiary-1">Login disini</a></p>
-                    <button type="submit" id="register-button" class="bg-tertiary-1 py-3 px-5 rounded-4 text-white text-2xl flex justify-center font-bold">Login</button>
+                    <button type="submit" id="register-button" class="bg-tertiary-1 py-3 px-5 rounded-4 text-white text-2xl flex justify-center font-bold">Register</button>
                 </div>
             </form>
         </div>

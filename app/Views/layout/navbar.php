@@ -1,6 +1,8 @@
 <nav class="flex justify-between">
   <div>
-    <h1 class="text-3xl font-bold">Digital Library</h1>
+    <a href="<?= base_url('/'); ?>">
+      <h1 class="text-3xl font-bold">Digital Library</h1>
+    </a>
   </div>
   <div>
     <ul class="flex gap-8">
