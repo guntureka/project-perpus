@@ -131,6 +131,12 @@
 .text-center {
     text-align: center;
 }
+.text-left {
+    text-align: left;
+}
+.text-justify {
+    text-align: justify;
+}
 .text-base {
     font-size: 16px;
 }
@@ -186,6 +192,18 @@
 .p-8 {
     padding: 32px;
 }
+.p-6 {
+    padding: 24px;
+}
+.pt-4 {
+    padding-top: 16px;
+}
+.pt-3 {
+    padding-top: 12px;
+}
+.pb-4 {
+    padding-bottom: 16px;
+}
 .py-2 {
     padding-top: 8px;
     padding-bottom: 8px;
@@ -213,6 +231,10 @@
 .px-8 {
     padding-left: 32px;
     padding-right: 32px;
+}
+.my-5 {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .mt-5 {
     margin-top: 20px;
@@ -260,6 +282,9 @@
 .cursor-pointer {
     cursor: pointer;
 }
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
 .cursor-text {
     cursor: text;
 }
@@ -271,6 +296,9 @@
 }
 .object-cover {
     object-fit: cover;
+}
+.hover-bg-tertiary-1:hover {
+    background-color: #167a7e;
 }
 
 /* Input Form */
