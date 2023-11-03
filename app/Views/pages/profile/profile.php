@@ -49,7 +49,7 @@
                         <div class="card flex flex-column">
                             <div class="book-img rounded-4 w-full overflow-hidden mb-4 position-relative" style="height: 300px;">
                                 <div class="position-absolute flex w-full h-full align-center justify-center" id="img-link" style="display: none;">
-                                    <a href="/book/<?= $loan['slug']; ?>" class="text-secondary-2 rounded-8 px-8 py-4 bg-primary-1 font-bold">Lihat Buku</a>
+                                    <a href="/<?= $loan['slug']; ?>" class="text-secondary-2 rounded-8 px-8 py-4 bg-primary-1 font-bold">Lihat Buku</a>
                                 </div>
                                 <img src="/img/books/<?= $loan['book_img']; ?>" alt="" class="w-full">
                             </div>
