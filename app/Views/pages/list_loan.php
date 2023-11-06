@@ -4,7 +4,7 @@
 <div class="mx-auto mt-5" style="width: 80%">
     <h1 class="text-3xl font-bold text-secondary-1">List Buku yang Dipinjam</h1>
     <div class="w-full rounded-4 overflow-hidden mt-4">
-        <table class="w-full bg-secondary-1 text-primary-1">
+        <table id="table" class="w-full bg-secondary-1 text-primary-1">
             <thead class="text-left">
                 <th class="text-center">No</th>
                 <th>Title</th>
