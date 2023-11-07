@@ -15,7 +15,11 @@
   <?php
   if ((url_is('/login') || url_is('/register'))) {
   } else {
-    echo ($this->include('layout/navbar'));
+    if (session()->get('is_admin') == '1') {
+      echo ($this->include('layout/navbar_admin'));
+    } else {
+      echo ($this->include('layout/navbar'));
+    }
   } ?>
   <?= $this->renderSection('content'); ?>
 
@@ -29,7 +33,8 @@
   const flashData = {
     success: '<?= session()->getFlashdata('success') ?>',
     errors: '<?= session()->getFlashdata('errors') ?>',
-    error: '<?= session()->getFlashdata('error') ?>'
+    error: '<?= session()->getFlashdata('error') ?>',
+    message: '<?= session()->getFlashdata('message') ?>'
   };
 
   const showToast = (message, className) => {
@@ -47,6 +52,8 @@
     showToast(flashData.errors, 'bg-red');
   } else if (flashData.error) {
     showToast(flashData.error, 'bg-red');
+  } else if (flashData.message) {
+    showToast(flashData.message, 'bg-yellow');
   }
 </script>
 

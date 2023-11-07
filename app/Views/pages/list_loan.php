@@ -33,7 +33,7 @@
                         endforeach ?>
             <?php else : ?>
                 <tr>
-                    <td colspan="8">No data</td>
+                    <td colspan="8" class="text-center">No data</td>
                 </tr>
             <?php endif ?>
         </table>

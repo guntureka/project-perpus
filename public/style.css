@@ -116,6 +116,12 @@
 .text-white {
     color: #fff;
 }
+.text-red {
+    color: #d00a0a;
+}
+.text-green {
+    color: #00b894;
+}
 .text-black {
     color: #000;
 }
@@ -173,6 +179,9 @@
 .font-regular {
     font-weight: 400;
 }
+.font-thin {
+    font-weight: 200;
+}
 .font-medium {
     font-weight: 500;
 }
@@ -197,6 +206,9 @@
 }
 .bg-green {
     background-color: #00b894;
+}
+.bg-yellow {
+    background-color: #f9ca24;
 }
 .p-8 {
     padding: 32px;
@@ -250,6 +262,10 @@
     padding-top: 40px;
     padding-bottom: 40px;
 }
+.px-2{
+    padding-left: 8px;
+    padding-right: 8px;
+}
 .px-4 {
     padding-left: 16px;
     padding-right: 16px;
@@ -296,6 +312,9 @@
 .mb-4 {
     margin-bottom: 16px;
 }
+.m-2 {
+    margin: 8px;
+}
 .mx-auto {
     margin-left: auto;
     margin-right: auto;
@@ -305,6 +324,9 @@
 }
 .rounded-4 {
     border-radius: 16px;
+}
+.rounded-3 {
+    border-radius: 12px;
 }
 .display-none {
     display: none;
