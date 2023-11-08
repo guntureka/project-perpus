@@ -155,7 +155,7 @@ class Loan extends ResourceController
 
             $paymentModel->insert([
                 'loan_id' => $id,
-                'amount' => $book['price'] + ($book['price'] * 0.1 * $days),
+                'amount' => $book['price'] + ($book['price'] * 0.05 * $days),
                 'created_at' => date('Y-m-d H:i:s'),
             ]); 
         }else{

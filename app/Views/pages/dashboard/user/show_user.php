@@ -29,7 +29,11 @@
                         <td class="p-8 flex align-center justify-center">
                             <img src="/img/profile/<?= $user['user_img']; ?>" alt="profile" width="150px">
                         </td>
-                        <td class="text-green"><?= $user['is_admin']; ?></td>
+                        <?php if($user['is_admin']): ?>
+                            <td class="text-green">Yes</td>
+                        <?php else: ?>
+                            <td class="text-red">No</td>
+                        <?php endif; ?>
                         <td>
                             <a href="/user/edit/<?= $user['user_id']; ?>">
                                 <button class="py-2 px-4 bg-tertiary-1 text-center rounded-4 text-white">

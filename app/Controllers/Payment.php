@@ -27,7 +27,8 @@ class Payment extends ResourceController
 
         //$data['payments'] = $loanModel->join('tb_loans', 'tb_loans.loan_id = tb_loans.book_id');
         $data['payments'] = $paymentModel->join('tb_loans', 'tb_loans.loan_id = tb_payments.loan_id')->join('tb_books', 'tb_books.book_id = tb_loans.book_id')->join('tb_users', 'tb_users.user_id = tb_loans.user_id')->findAll();
-        //dd($data['payments']);
+        $data['payment_date'] = $paymentModel->findColumn('created_at');
+        // dd($data);
 
         return view('pages/dashboard/payment/show_payment', $data);
     }

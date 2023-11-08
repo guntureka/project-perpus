@@ -15,7 +15,7 @@
                 <th>Payment Amount</th>
             </thead>
             <tbody>
-                <tr>
+                <!-- <tr>
                     <td class="text-center">1</td>
                     <td>admin</td>
                     <td>Bumi Manusia</td>
@@ -25,7 +25,24 @@
                 </tr>
                 <tr>
                     <td colspan="9" class="text-center">No Data</td>
-                </tr>
+                </tr> -->
+                <?php if($payments): ?>
+                <?php $i = 0 ?>
+                <?php foreach($payments as $payment): ?>
+                    <tr>
+                        <td><?= $i+1; ?></td>
+                        <td><?= $payment['name']; ?></td>
+                        <td><?= $payment['title']; ?></td>
+                        <td><?= $payment['loan_date']; ?></td>
+                        <td><?= $payment_date[$i]; ?></td>
+                        <td>Rp <?= $payment['amount']; ?></td>
+                    </tr>
+                <?php $i++;endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="9" class="text-center">No Data</td>
+                    </tr>
+                <?php endif ?>
             </tbody>
         </table>
     </div>
