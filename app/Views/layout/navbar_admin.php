@@ -7,6 +7,9 @@
   <div>
     <ul class="flex gap-8">
       <li>
+        <a href="<?= base_url('/user'); ?>">User</a>
+      </li>
+      <li>
         <a href="<?= base_url('/book'); ?>">Book</a>
       </li>
       <li>
