@@ -41,6 +41,9 @@ class Book extends ResourceController
 
         $data['books'] = $bookModel->where('slug', $id)->first();
         $data['loans'] = $loansModel->where('book_id', $data['books']['book_id'])->findAll();
+        // if($data['loans'] == null ){
+        //     return view('pages/book_detail', $data);
+        // }
         //dd($data['books']);
         return view('pages/book_detail', $data);
     }
