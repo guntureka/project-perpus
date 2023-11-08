@@ -13,6 +13,7 @@ $routes->get('/', 'Home::index', ['filter' => 'authGuard']);
 $routes->get('/login', 'Auth::index', ['filter' => 'isLogin']);
 $routes->post('/login', 'Auth::loginAuth');
 $routes->get('/logout', 'Auth::logout');
+$routes->get('/forgot-password', 'Auth::forgotPassword', ['filter' => 'isLogin']);
 //register
 $routes->resource('register', ['filter' => 'isLogin']);
 //book

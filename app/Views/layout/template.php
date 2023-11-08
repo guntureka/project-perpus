@@ -13,7 +13,7 @@
 
 <body style="font-family: 'Inter', sans-serif;">
   <?php
-  if ((url_is('/login') || url_is('/register'))) {
+  if ((url_is('/login') || url_is('/register') || url_is('/forgot-password'))) {
   } else {
     if (session()->get('is_admin') == '1') {
       echo ($this->include('layout/navbar_admin'));
@@ -25,6 +25,7 @@
 
   <div id="toast" class="toast display-none text-center text-white">
   </div>
+      <script src="https://kit.fontawesome.com/348e129488.js" crossorigin="anonymous"></script>
 </body>
 
 <!-- Toast script -->

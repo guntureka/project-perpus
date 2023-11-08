@@ -79,4 +79,9 @@ class Auth extends BaseController
         session()->destroy();
         return redirect()->to('/login');
     }
+
+    public function forgotPassword()
+    {
+        return view('pages/auth/forgot_password');
+    }
 }
