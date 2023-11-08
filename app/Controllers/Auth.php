@@ -62,7 +62,9 @@ class Auth extends BaseController
 
                 $session->set($ses_data);
                 $session->setFlashdata('success', 'Welcome Back ' . $data['name'] . '!');
-                return redirect()->to('/');
+                if($data['is_admin'] == '1')
+                    return redirect()->to('/book');
+                else return redirect()->to('/');
             } else {
                 $session->setFlashdata('error', 'Wrong Password');
                 return redirect()->to('/login');

@@ -29,7 +29,7 @@ class IsAdmin implements FilterInterface
         if(!session()->get('logged_in')){
             return redirect()->to('/login');
         }else{
-            if(session()->get('role') != 'admin'){
+            if(session()->get('is_admin') != '1'){
                 session()->setFlashdata('error', 'You are not allowed to access this page');
                 return redirect()->to('/');
             }
