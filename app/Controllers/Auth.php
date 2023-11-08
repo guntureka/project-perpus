@@ -9,7 +9,7 @@ class Auth extends BaseController
     public function index(): string
     {
         helper(['form']);
-        return view('pages/login');
+        return view('pages/auth/login');
     }
 
     public function loginAuth()
