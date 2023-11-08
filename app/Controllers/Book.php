@@ -25,7 +25,7 @@ class Book extends ResourceController
 
         $data['books'] = $booksModel->findAll();
 
-        return view('pages/dashboard/user/show_user', $data);
+        return view('pages/dashboard/book/show_book', $data);
     }
 
     /**
