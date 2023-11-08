@@ -10,50 +10,25 @@
                 <th class="text-center">No</th>
                 <th>User</th>
                 <th>Book</th>
+                <th>Loan Date</th>
                 <th>Payment Date</th>
-                <th>Return Date</th>
+                <th>Payment Amount</th>
             </thead>
-<div>
-    <table>
-        <thead>
-            <th>No</th>
-            <th>User</th>
-            <th>Book</th>
-            <th>Payment Date</th>
-            <th>Total Payment</th>
-            <th>Action</th>
-        </thead>
-        <tbody>
-            <?php if($payments): ?>
-                <?php $i = 0 ?>
-                <?php foreach($payments as $payment): ?>
-                    <tr>
-                        <td><?= $i+1; ?></td>
-                        <td><?= $payment['name']; ?></td>
-                        <td><?= $payment['title']; ?></td>
-                        <td><?= $payment['created_at']; ?></td>
-                        <!-- <td>Rp <?= $payment['total_payment']; ?></td>
-                        <td>
-                            <?php if($payment['is_payment']): ?>
-                                <span class="badge badge-success">payment</span>
-                            <?php else: ?>
-                                <span class="badge badge-danger">Return</span>
-                            <?php endif ?>
-                        </td>
-                        <td>
-                            <a href="/payment/return/<?= $payment['payment_id']; ?>">
-                                <button>accept</button>
-                            </a>
-                        </td> -->
-                    </tr>
-                <?php $i++;endforeach; ?>
-            <?php else: ?>
+            <tbody>
                 <tr>
-                    <td colspan="8">No Data</td>
+                    <td class="text-center">1</td>
+                    <td>admin</td>
+                    <td>Bumi Manusia</td>
+                    <td>2021-08-01</td>
+                    <td>2021-08-01</td>
+                    <td>Rp 100.000</td>
                 </tr>
-            <?php endif ?>
-        </tbody>
-    </table>
+                <tr>
+                    <td colspan="9" class="text-center">No Data</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 
