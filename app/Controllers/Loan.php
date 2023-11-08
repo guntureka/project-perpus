@@ -181,5 +181,21 @@ class Loan extends ResourceController
     public function delete($id = null)
     {
         //
+        $loanModel = new LoansModel();
+        $bookModel = new BooksModel();
+
+        $loan = $loanModel->where('loan_id', $id)->first();
+        $book = $bookModel->where('book_id', $loan['book_id'])->first();
+
+        if($loan['is_loan'] == true){
+            session()->setFlashdata('error', 'Book is still loaned');
+            return redirect()->to('/loan')->withInput();
+        }
+
+        $bookModel->update($loan['book_id'], ['quantity_available' => $book['quantity_available'] + 1]);
+        $loanModel->delete($id);
+
+        session()->setFlashdata('success', 'Delete success');
+        return redirect()->to('/loan')->withInput();
     }
 }
