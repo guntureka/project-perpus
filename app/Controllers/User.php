@@ -106,6 +106,12 @@ class User extends ResourceController
                         'is_image' => 'Photo is not valid',
                     ],
                 ],
+                'is_admin' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Role is required',
+                    ],
+                ],
             ];
 
             if (!$this->validate($rules)) {
@@ -129,7 +135,7 @@ class User extends ResourceController
                     'name' => $name,
                     'email' => $email,
                     'password' => password_hash($password, PASSWORD_DEFAULT),
-                    //'user_img' => $userImgName,
+                    'user_img' => $userImgName,
                     'is_admin' => $isAdmin,
                 ];
 
@@ -137,26 +143,11 @@ class User extends ResourceController
 
                 session()->setFlashdata('success', 'Successful Registration');
                 return redirect()->to('/user');
-                // $response = [
-                //     'status' => 200,
-                //     'error' => null,
-                //     'messages' => "Success Registration",
-                //     "data" => $data,
-                // ];
-                // return $this->respond($response);
             }
         } else {
 
             session()->setFlashdata('error', 'Failed Registration');
             return redirect()->to('/user/add');
-
-            // $response = [
-            //     'status' => 400,
-            //     'error' => null,
-            //     'messages' => "Failed Registration",
-            //     "data" => null,
-            // ];
-            // return $this->respond($response);
         }
     }
 

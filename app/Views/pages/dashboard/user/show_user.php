@@ -27,7 +27,9 @@
                         <td><?= $user['name']; ?></td>
                         <td><?= $user['email']; ?></td>
                         <td class="p-8 flex align-center justify-center">
-                            <img src="/img/profile/<?= $user['user_img']; ?>" alt="profile" width="150px">
+                            <div class="rounded-3 overflow-hidden" style="height: 100px; width: 100px;">
+                                <img src="/img/profile/<?= $user['user_img']; ?>" alt="profile" class="gambar w-full h-full object-cover">
+                            </div>
                         </td>
                         <?php if($user['is_admin']): ?>
                             <td class="text-green">Yes</td>
