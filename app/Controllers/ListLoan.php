@@ -22,7 +22,7 @@ class ListLoan extends ResourceController
 
         $data['loans'] = $loanModel->where('user_id', $id)->where('is_loan', true)->join('tb_books', 'tb_books.book_id = tb_loans.book_id')->findAll();
 
-        return view('pages/list_loan', $data);
+        return view('pages/list/list_loan', $data);
     }
 
     /**
