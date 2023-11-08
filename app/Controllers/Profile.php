@@ -21,6 +21,19 @@ class Profile extends ResourceController
         $loanModel = new LoansModel();
         $data['loans'] = $loanModel->where('user_id', $id)->join('tb_books', 'tb_books.book_id = tb_loans.book_id')->findAll();
         $data['user'] = $userModel->where('user_id', $id)->first();
+
+        // Extract unique book IDs and their associated data
+        $uniqueBooks = [];
+        $bookIds = [];
+
+        foreach ($data['loans'] as $loan) {
+            $bookId = $loan['book_id'];
+            if (!in_array($bookId, $bookIds)) {
+                $uniqueBooks[] = $loan;
+                $bookIds[] = $bookId;
+            }
+        }
+        $data['loans'] = $uniqueBooks;
         return view('pages/profile/profile', $data);
     }
 
@@ -82,7 +95,7 @@ class Profile extends ResourceController
     {
         //
         helper(['form']);
-        if($this->request->getMethod() == 'post'){
+        if ($this->request->getMethod() == 'post') {
             $rules = [
                 'name' => [
                     'rules' => 'required|min_length[3]|max_length[20]',
@@ -121,10 +134,10 @@ class Profile extends ResourceController
                 ],
             ];
 
-            if(!$this->validate($rules)){
+            if (!$this->validate($rules)) {
                 dd($this->validator->listErrors());
-                return redirect()->to('/profile/edit/'.$id)->withInput();
-            }else{
+                return redirect()->to('/profile/edit/' . $id)->withInput();
+            } else {
                 $userModel = new UsersModel();
 
                 $name           = $this->request->getVar('name');
@@ -133,23 +146,23 @@ class Profile extends ResourceController
 
                 //handling email update
                 $oldEmail = $userModel->where('user_id', $id)->first()['email'];
-                if($oldEmail == $email){
+                if ($oldEmail == $email) {
                     $email = $oldEmail;
-                }else{
-                    if($userModel->where('email', $email)->first()){
+                } else {
+                    if ($userModel->where('email', $email)->first()) {
                         session()->setFlashdata('error', 'Email has already registered');
-                        return redirect()->to('/profile/edit/'.$id)->withInput();
+                        return redirect()->to('/profile/edit/' . $id)->withInput();
                     }
                 }
 
                 //handling img upload
                 $oldImgName = $userModel->where('user_id', $id)->first()['user_img'];
                 $userImgName = $user_img->getName();
-                if($user_img->getError() == 4){
+                if ($user_img->getError() == 4) {
                     $userImgName = $oldImgName;
-                }else{
-                    if($oldImgName != 'default.jpg'){
-                        unlink('img/profile/'.$oldImgName);
+                } else {
+                    if ($oldImgName != 'default.jpg') {
+                        unlink('img/profile/' . $oldImgName);
                     }
                     $userImgName = $user_img->getRandomName();
                     $user_img->move('img/profile', $userImgName);
@@ -164,18 +177,18 @@ class Profile extends ResourceController
                 $userModel->update($id, $data);
 
                 session()->setFlashdata('success', 'Successfuly update profile');
-                return redirect()->to('/profile');    
+                return redirect()->to('/profile');
             }
-        }else{
+        } else {
             session()->setFlashdata('error', 'Failed update profile');
-            return redirect()->to('/profile/edit/'.$id);
+            return redirect()->to('/profile/edit/' . $id);
         }
-        
     }
 
-    public function updatePassword($id = null){
+    public function updatePassword($id = null)
+    {
         helper(['form']);
-        if($this->request->getMethod() == 'post'){
+        if ($this->request->getMethod() == 'post') {
             $userModel = new UsersModel();
 
             $rules = [
@@ -202,10 +215,10 @@ class Profile extends ResourceController
                 ],
             ];
 
-            if(!$this->validate($rules)){
+            if (!$this->validate($rules)) {
                 dd($this->validator->listErrors());
-                return redirect()->to('/profile/edit/'.$userModel['user_id'])->withInput();
-            }else{
+                return redirect()->to('/profile/edit/' . $userModel['user_id'])->withInput();
+            } else {
                 $userModel = new UsersModel();
 
                 $password       = $this->request->getVar('password');
@@ -213,9 +226,9 @@ class Profile extends ResourceController
                 $new_password   = $this->request->getVar('new_password');
 
                 //handling password update
-                if(!password_verify($password, $oldPassword)){
+                if (!password_verify($password, $oldPassword)) {
                     session()->setFlashdata('error', 'Wrong password');
-                    return redirect()->to('/profile/edit/'.$id)->withInput();
+                    return redirect()->to('/profile/edit/' . $id)->withInput();
                 }
 
                 $data = [
@@ -225,11 +238,11 @@ class Profile extends ResourceController
                 $userModel->update($id, $data);
 
                 session()->setFlashdata('success', 'Successfuly update password');
-                return redirect()->to('/profile');    
+                return redirect()->to('/profile');
             }
-        }else{
+        } else {
             session()->setFlashdata('error', 'Failed update password');
-            return redirect()->to('/profile/edit/'.$id);
+            return redirect()->to('/profile/edit/' . $id);
         }
     }
 

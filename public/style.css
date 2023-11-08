@@ -41,6 +41,12 @@
 .gap-8 {
     gap: 32px;
 }
+.gap-7 {
+    gap: 28px;
+}
+.gap-6 {
+    gap: 24px;
+}
 .gap-4 {
     gap: 16px;
 }
@@ -109,6 +115,9 @@
 }
 .text-white {
     color: #fff;
+}
+.text-black {
+    color: #000;
 }
 .text-primary-1 {
     color: var(--primary-1);
@@ -195,6 +204,15 @@
 .p-6 {
     padding: 24px;
 }
+.p-4 {
+    padding: 16px;
+}
+.p-3 {
+    padding: 12px;
+}
+.p-2 {
+    padding: 8px;
+}
 .pt-4 {
     padding-top: 16px;
 }
@@ -216,6 +234,18 @@
     padding-top: 16px;
     padding-bottom: 16px;
 }
+.py-5 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.py-6 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+.py-8 {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
 .py-10 {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -235,6 +265,12 @@
 .my-5 {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.mt-10 {
+    margin-top: 40px;
+}
+.mt-8 {
+    margin-top: 32px;
 }
 .mt-5 {
     margin-top: 20px;
@@ -333,6 +369,25 @@ button {
     cursor: pointer;
 }
 
+table#table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table#table thead tr th {
+    padding: 8px 6px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 16px;
+    border: 1px solid rgb(91, 91, 91, 0.5);
+}
+
+table#table tbody tr td {
+    padding: 12px 6px;
+    font-size: 16px;
+    border: 1px solid rgb(91, 91, 91, 0.5);
+}
+
 /* pages */
 nav {
     align-items: center;
@@ -396,18 +451,21 @@ nav li #logout-btn:hover {
 #register .register-container {
     width: 80%;
 }
-.register-container button:hover {
+.register-container button:hover,
+.profile-container button:hover {
     background-color: #277a7d;
 }
-.register-container .profile-img-container {
+.register-container .profile-img-container,
+.profile-container .profile-img-container {
     max-height: 200px;
     max-width: 200px;
 }
-.register-container .profile-img-container img {
+.register-container .profile-img-container img,
+.profile-container .profile-img-container img {
     width: 100%;
 }
 
-#home #book-container {
+#book-container {
     display: grid;
     width: 100%;
     grid-template-columns: repeat(2, 40%);
@@ -449,7 +507,7 @@ nav li #logout-btn:hover {
         width: 45%;
     }
 
-    #home #book-container {
+    #book-container {
         grid-template-columns: repeat(3, 30%);
         grid-gap: 32px 16px;
     }
@@ -471,7 +529,7 @@ nav li #logout-btn:hover {
     #register .register-container {
         width: 35%;
     }
-    #home #book-container {
+    #book-container {
         grid-template-columns: repeat(4, 20%);
         grid-gap: 32px 16px;
     }
