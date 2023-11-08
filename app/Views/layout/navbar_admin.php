@@ -7,13 +7,16 @@
   <div>
     <ul class="flex gap-8">
       <li>
-        <a href="<?= base_url('/book'); ?>">Books</a>
+        <a href="<?= base_url('/user'); ?>">User</a>
       </li>
       <li>
-        <a href="<?= base_url('/loan'); ?>">Loans</a>
+        <a href="<?= base_url('/book'); ?>">Book</a>
       </li>
       <li>
-        <a href="<?= base_url('/transaction'); ?>">Transactions</a>
+        <a href="<?= base_url('/loan'); ?>">Loan</a>
+      </li>
+      <li>
+        <a href="<?= base_url('/payment'); ?>">Payment</a>
       </li>
       <li>
         <a id="logout-btn" href="<?= base_url('/logout'); ?>" class="py-3 px-4 bg-white text-secondary-2 rounded-8 font-bold">Logout</a>

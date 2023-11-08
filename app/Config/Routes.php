@@ -27,15 +27,22 @@ $routes->get('/profile/edit/(:num)', 'Profile::edit/$1', ['filter' => 'authGuard
 $routes->post('/profile/edit/(:num)', 'Profile::update/$1', ['filter' => 'authGuard']);
 $routes->post('/profile/edit/password/(:num)', 'Profile::updatePassword/$1', ['filter' => 'authGuard']);
 
+$routes->get('/payment', 'Payment::index', ['filter' => ['authGuard', 'isAdmin']]);
+
 //list
 $routes->get('/list', 'ListLoan::index', ['filter' => 'authGuard']);
 
-
-//$routes->post('/loan', 'Loan::create', ['filter' => 'authGuard']);
-$routes->post('(:segment)/loan', 'Loan::create' ,['filter' => 'authGuard']);
-
+$routes->resource('user');
+$routes->get('/user', 'User::index',['filter' => ['authGuard', 'isAdmin']]);
+//$routes->get('/user', 'User::index');
+$routes->get('/user/delete/(:num)', 'User::delete/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('/user/add', 'User::new', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('/user/add', 'User::create', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('/user/edit/(:num)', 'User::edit/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('/user/edit/(:num)', 'User::update/$1', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->get('/(:segment)', 'Home::show/$1', ['filter' => 'authGuard']);
 //$routes->post('/(:segment)', 'Home::create', ['filter' => 'authGuard']);
+$routes->post('/user/add', 'User::create');
 $routes->get('/book/add', 'Book::new', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->post('/book/add', 'Book::create', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->get('/book/delete/(:segment)', 'Book::delete/$1', ['filter' => ['authGuard', 'isAdmin']]);

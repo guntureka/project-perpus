@@ -9,6 +9,7 @@ use App\Models\UsersModel;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 use DateTime;
+use DateTimeZone;
 
 class Payment extends ResourceController
 {
@@ -22,11 +23,11 @@ class Payment extends ResourceController
     {
         //
         $loanModel = new LoansModel();
-        $bookModel = new BooksModel();
-        $userModel = new UsersModel();
+        $paymentModel = new PaymentsModel();
 
-        $data['payments'] = $loanModel->join('tb_books', 'tb_books.book_id = tb_loans.book_id')->join('tb_users', 'tb_users.user_id = tb_loans.user_id')->findAll();
-        //dd($data['loans']);
+        //$data['payments'] = $loanModel->join('tb_loans', 'tb_loans.loan_id = tb_loans.book_id');
+        $data['payments'] = $paymentModel->join('tb_loans', 'tb_loans.loan_id = tb_payments.loan_id')->join('tb_books', 'tb_books.book_id = tb_loans.book_id')->join('tb_users', 'tb_users.user_id = tb_loans.user_id')->findAll();
+        //dd($data['payments']);
 
         return view('pages/dashboard/payment/show_payment', $data);
     }
