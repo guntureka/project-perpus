@@ -13,6 +13,7 @@ $routes->get('/', 'Home::index', ['filter' => 'authGuard']);
 $routes->get('/login', 'Auth::index', ['filter' => 'isLogin']);
 $routes->post('/login', 'Auth::loginAuth');
 $routes->get('/logout', 'Auth::logout');
+$routes->get('/forgot-password', 'Auth::forgotPassword', ['filter' => 'isLogin']);
 //register
 $routes->resource('register', ['filter' => 'isLogin']);
 //book
@@ -31,8 +32,6 @@ $routes->get('/payment', 'Payment::index', ['filter' => ['authGuard', 'isAdmin']
 
 //list
 $routes->get('/list', 'ListLoan::index', ['filter' => 'authGuard']);
-
-$routes->resource('user');
 $routes->get('/user', 'User::index',['filter' => ['authGuard', 'isAdmin']]);
 //$routes->get('/user', 'User::index');
 $routes->get('/user/delete/(:num)', 'User::delete/$1', ['filter' => ['authGuard', 'isAdmin']]);
@@ -40,6 +39,9 @@ $routes->get('/user/add', 'User::new', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->post('/user/add', 'User::create', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->get('/user/edit/(:num)', 'User::edit/$1', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->post('/user/edit/(:num)', 'User::update/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('/user/edit/password/(:num)', 'User::updatePassword/$1', ['filter' => 'authGuard']);
+
+
 $routes->get('/(:segment)', 'Home::show/$1', ['filter' => 'authGuard']);
 //$routes->post('/(:segment)', 'Home::create', ['filter' => 'authGuard']);
 $routes->post('/user/add', 'User::create');
@@ -48,3 +50,5 @@ $routes->post('/book/add', 'Book::create', ['filter' => ['authGuard', 'isAdmin']
 $routes->get('/book/delete/(:segment)', 'Book::delete/$1', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->get('/book/edit/(:segment)', 'Book::edit/$1', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->post('/book/edit/(:segment)', 'Book::update/$1', ['filter' => ['authGuard', 'isAdmin']]);
+
+$routes->post('(:segment)/loan', 'Loan::create' ,['filter' => 'authGuard']);
