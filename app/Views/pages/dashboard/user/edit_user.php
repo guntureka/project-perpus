@@ -11,7 +11,7 @@
                     <div class="flex flex-column gap-1 mb-1">
                         <label for="user_img" class="text-primary-1 text-2xl">Profile Picture</label>
                         <div class="flex flex-column gap-2">
-                            <input type="file" name="user_img" id="user_img" class="bg-secondary-2 py-3 px-5 rounded-4 text-xl font-regular text-primary-1 w-full h-fit" value="<?= $user['user_img']; ?>" required>
+                            <input type="file" name="user_img" id="user_img" class="bg-secondary-2 py-3 px-5 rounded-4 text-xl font-regular text-primary-1 w-full h-fit" value="<?= $user['user_img']; ?>">
                             <div class="profile-img-container w-40 rounded-4 overflow-hidden">
                                 <img src="/img/profile/<?= $user['user_img']; ?>" alt="register" class="gambar" id="profile-img-container">
                             </div>

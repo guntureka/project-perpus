@@ -12,7 +12,7 @@
                 </div>
                 <div class="flex flex-column gap-1">
                     <label for="synopsis" class="text-primary-1 text-2xl">Synopsis</label>
-                    <input type="text" name="synopsis" id="synopsis" class="bg-secondary-2 py-3 px-5 rounded-4 text-xl font-regular text-white" required value="<?= $book['synopsis']; ?>">
+                    <textarea name="synopsis" id="synopsis" class="bg-secondary-2 py-3 px-5 rounded-4 text-xl font-regular text-white" placeholder="Masukan sinopsis buku..." required><?= $book['synopsis']; ?></textarea>
                 </div>
                 <div class="flex flex-column gap-1">
                     <label for="author" class="text-primary-1 text-2xl">Author</label>
@@ -33,7 +33,7 @@
                 <div class="flex flex-column gap-1 mb-1">
                     <label for="book_img" class="text-primary-1 text-2xl">Profile Picture</label>
                     <div class="flex flex-column gap-2">
-                        <input type="file" name="book_img" id="book_img" class="bg-secondary-2 py-3 px-5 rounded-4 text-xl font-regular text-primary-1 w-full h-fit" required value="<?= $book['book_img']; ?>">
+                        <input type="file" name="book_img" id="book_img" class="bg-secondary-2 py-3 px-5 rounded-4 text-xl font-regular text-primary-1 w-full h-fit" value="<?= $book['book_img']; ?>">
                         <div class="book-img-container rounded-3 overflow-hidden" style="height: 192px; width: 108px;">
                             <img alt="register" class="gambar w-full h-full object-cover" id="book-img-container" src="/img/books/<?= $book['book_img']; ?>">
                         </div>

@@ -39,6 +39,9 @@ $routes->get('/user/add', 'User::new', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->post('/user/add', 'User::create', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->get('/user/edit/(:num)', 'User::edit/$1', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->post('/user/edit/(:num)', 'User::update/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('/user/edit/password/(:num)', 'User::updatePassword/$1', ['filter' => 'authGuard']);
+
+
 $routes->get('/(:segment)', 'Home::show/$1', ['filter' => 'authGuard']);
 //$routes->post('/(:segment)', 'Home::create', ['filter' => 'authGuard']);
 $routes->post('/user/add', 'User::create');

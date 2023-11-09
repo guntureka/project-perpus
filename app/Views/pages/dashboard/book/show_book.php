@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="mx-auto mt-5" style="width: 80%">
+<div class="mx-auto mt-5" style="width: 90%">
     <h1 class="text-3xl font-bold text-secondary-1">List Buku</h1>
     <a href="/book/add">
         <button class="mt-4 py-2 px-4 bg-green text-center rounded-4 text-white">

@@ -13,7 +13,7 @@
                 </div>
                 <div class="flex flex-column gap-1">
                     <label for="synopsis" class="text-primary-1 text-2xl">Synopsis</label>
-                    <input type="text" name="synopsis" id="synopsis" class="bg-secondary-2 py-3 px-5 rounded-4 text-xl font-regular text-white" placeholder="Masukan sinopsis buku..." required>
+                    <textarea name="synopsis" id="synopsis" class="bg-secondary-2 py-3 px-5 rounded-4 text-xl font-regular text-white" placeholder="Masukan sinopsis buku..." required></textarea>
                 </div>
                 <div class="flex flex-column gap-1">
                     <label for="author" class="text-primary-1 text-2xl">Author</label>
