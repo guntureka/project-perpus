@@ -21,8 +21,8 @@
           <input type="text" name="search" id="search" placeholder="Cari Buku" class="font-inter font-bold text-secondary-1 bg-primary-1">
         </div>
       </div>
-
       <div id="books" class="flex justify-center">
+        
         <div id="book-container">
           <!-- Books data -->
         </div>
@@ -54,8 +54,12 @@
   const searchContainer = document.querySelector('#search-container');
   const searchInput = document.querySelector('#search');
   const originalBooks = [...data]; // Store a copy of the original book data;
+  
   if (data.length === 0) {
     displayNoBooksFoundMessage();
+  }else{
+  // Display all books initially.
+  displayBooks(data);
   }
 
   function displayBooks(books) {
@@ -109,9 +113,6 @@
     // Display the "Buku tidak ditemukan" message in the middle.
     noBooksFoundContainer.style.display = 'flex';
   }
-
-  // Display all books initially.
-  displayBooks(data);
 
   searchContainer.addEventListener('click', () => {
     searchInput.focus();
