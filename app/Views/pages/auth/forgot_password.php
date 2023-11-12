@@ -10,7 +10,7 @@
         </div>
         <div class="login-container">
             <h1 class="font-bold text-center text-white mb-5 text-5xl">Digital Library</h1>
-            <form action="/login" method="post" id=" login-form" class="bg-white p-8 rounded-8">
+            <form action="/forgot-password" method="post" id=" login-form" class="bg-white p-8 rounded-8">
                 <h2 class="font-bold text-secondary-2 text-3xl mb-5"><i id="back" class="fa-solid fa-arrow-left cursor-pointer" onClick="window.history.back()"></i>
                 Change Password</h2>
                 <div class="flex flex-column gap-3">

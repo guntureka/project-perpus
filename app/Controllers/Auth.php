@@ -80,8 +80,56 @@ class Auth extends BaseController
         return redirect()->to('/login');
     }
 
-    public function forgotPassword()
-    {
+    public function forgotPassword(){
         return view('pages/auth/forgot_password');
+    }
+
+    public function changePassword(){
+        helper(['form']);
+
+        $rules = [
+            'email' => [
+                'rules' => 'required|valid_email',
+                'errors' => [
+                    'required' => 'Email is required',
+                    'valid_email' => 'Email is not valid',
+                ],
+            ],
+            'password' => [
+                'rules' => 'required|min_length[8]',
+                'errors' => [
+                    'required' => 'Password is required',
+                    'min_length' => 'Password is too short',
+                ],
+            ],
+            'password_confirm' => [
+                'rules' => 'required|matches[password]',
+                'errors' => [
+                    'required' => 'Password confirmation is required',
+                    'matches' => 'Password confirmation is not match',
+                ],
+            ],
+        ];
+
+        if(!$this->validate($rules)){
+            session()->setFlashdata('error', $this->validator->getErrors());
+            return redirect()->to('/forgot-password');
+        }else{
+            $userModel = new UsersModel();
+
+            $email = $this->request->getVar('email');
+            $password = $this->request->getVar('password');
+
+            $data = $userModel->where('email', $email)->first();
+
+            if(!$data){
+                session()->setFlashdata('error', 'Email not Found');
+                return redirect()->to('/forgot-password');
+            }else{
+                $userModel->update($data['user_id'], ['password' => password_hash($password, PASSWORD_DEFAULT)]);
+                session()->setFlashdata('success', 'Password Changed');
+                return redirect()->to('/login');
+            }
+        }
     }
 }
